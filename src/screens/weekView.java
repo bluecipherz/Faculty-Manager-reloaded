@@ -17,7 +17,7 @@ public class weekView extends BorderPane {
 		BorderPane weekscrollpane = new BorderPane();
 		GridPane weekgrid = new GridPane();
 		GridPane prdgrid = new GridPane();
-		ComboBox deptcombo = new ComboBox();
+		ComboBox<String> deptcombo = new ComboBox<String>();
 		
 		
 		HBox combohbox = new HBox();

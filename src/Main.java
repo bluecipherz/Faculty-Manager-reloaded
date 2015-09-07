@@ -28,7 +28,7 @@ public class Main extends Application{
 		getStage g = new getStage();
 		g.returnStage(primaryStage);
 		////////////////////////////////////////////////////
-		StartDatabase database = new StartDatabase();
+		new StartDatabase();
 		
 		////////////////////next page///////////////////////
 		

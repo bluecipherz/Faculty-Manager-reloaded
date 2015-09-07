@@ -1,7 +1,6 @@
 package screens;
 
 import functions.*;
-import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -9,14 +8,13 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Stop;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Random;
+
+import animations.animations;
 
 public class entryViewDept extends BorderPane{
 	public entryViewDept(){
@@ -27,28 +25,24 @@ public class entryViewDept extends BorderPane{
 		GridPane deptgrid = new GridPane();
 		VBox lbox = new VBox();
 		VBox rbox = new VBox();
-		final entryView eview = new entryView();
 		final ScrollPane hscrollpane = new ScrollPane();
-		final Button emptybutton = new Button();
+		final Label emptylabel = new Label();
+		animations animation = new animations();
 
 		hscrollpane.setHbarPolicy(ScrollBarPolicy.ALWAYS);
 		
 		String str="";
 		int i =0,j=1,count=0;
-		final int k=0;
-
-		Random r = new Random(6);
-		System.out.println(r);
 		
 		title.setId("title");
 		deptgrid.setId("grid");
 		hscrollpane.setId("scroll");
 		lbox.setId("lbox");
 		rbox.setId("rbox");
-		emptybutton.setId("empty-button");
+		emptylabel.setId("empty-button");
 		
-		emptybutton.setMaxWidth(40);
-		emptybutton.setMinWidth(40);
+		emptylabel.setMaxWidth(40);
+		emptylabel.setMinWidth(40);
 		
 		try {
 			Class.forName("org.sqlite.JDBC");
@@ -56,7 +50,7 @@ public class entryViewDept extends BorderPane{
 		Connection connection = DriverManager.getConnection("jdbc:sqlite:sample.db");
 		Statement statement = connection.createStatement();
 		ResultSet rs = statement.executeQuery("select * from TimeScheduler");
-		deptgrid.add(emptybutton, 0, 0);
+		deptgrid.add(emptylabel, 0, 0);
 		try{
 		while (rs.next()) {
 			if(str.equals(rs.getString("dept"))){
@@ -76,6 +70,7 @@ public class entryViewDept extends BorderPane{
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+		animation.fadeIn(deptgrid, 1500, 0, 1, 0);
 		
 		for(i=1;i<=count;i++) {
 			setBtnColor(deptgrid.getChildren().get(i));
@@ -85,7 +80,9 @@ public class entryViewDept extends BorderPane{
 			deptgrid.getChildren().get(i).setOnMouseClicked(new EventHandler<Event>() {
 				public void handle(Event e) {
 					getChildren().clear();
+					entryView eview = new entryView();
 					setCenter(eview);
+					eview.giveNode(e.getSource());
 				}
 
 			});
@@ -116,7 +113,6 @@ public class entryViewDept extends BorderPane{
 		setLeft(lbox);
 		setRight(rbox);
 	}
-	
 	
 	public void setBtnColor(Node btn) {
 		Random rand = new Random(System.currentTimeMillis());

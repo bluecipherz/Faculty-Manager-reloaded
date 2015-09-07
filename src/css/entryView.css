@@ -1,3 +1,11 @@
 .root{
-	-fx-background-color:#333333;
+	-fx-background-color:white;
+}
+#options{
+	-fx-background-color:white;
+	-fx-pref-width:150;
+}
+#tlist{
+	-fx-background-color:white;
+	-fx-pref-width:150;
 }

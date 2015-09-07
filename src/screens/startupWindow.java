@@ -16,13 +16,11 @@ startupWindow(){
 	getStylesheets().add("css/style.css");
 	
 	animations a= new animations();
-	final entryViewDept eviewdept = new entryViewDept();
 	addCloseButton cb = new addCloseButton();
 	GridPane startupgrid = new GridPane();
 	VBox startgaphbox = new VBox();
 	final Button detailb = new Button("Detail Mode");
 	final Button entryb = new Button("Entry Mode");
-	final detailView dview = new detailView();
 	
 //	Image close = new Image(getClass().getResourceAsStream("../img/detailicon.png"));
 //    detailb.setGraphic(new ImageView(close));
@@ -65,6 +63,7 @@ startupWindow(){
 		
 		public void handle(ActionEvent ae) {
 			getChildren().clear();
+			final detailView dview = new detailView();
 			setCenter(dview);
 		}
 	});
@@ -73,6 +72,7 @@ startupWindow(){
 		
 		public void handle(ActionEvent ae) {
 			getChildren().clear();
+			final entryViewDept eviewdept = new entryViewDept();
 			setCenter(eviewdept);
 		}
 	});
