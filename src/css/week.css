@@ -1,0 +1,27 @@
+.root{
+	-fx-background-color: #fefefe;
+}
+
+#combo-hbox{
+ 	-fx-padding:0 10 0 0;
+ }
+#grid-hbox{
+	-fx-background-color: transparent;
+}
+#wvcombopane{
+	-fx-background-color: #fefefe;
+}
+#weekgrid{
+		
+	  -fx-padding:20 0 0 0;   
+}
+#prdgrid{
+	-fx-background-color: transparent;
+}
+#prdgrid .label{
+	-fx-background-color: #00aba9;
+	-fx-pref-width:80;
+	-fx-pref-height:50;
+	-fx-text-allign:Center;
+	
+}
