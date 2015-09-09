@@ -80,9 +80,8 @@ public class entryViewDept extends BorderPane{
 			deptgrid.getChildren().get(i).setOnMouseClicked(new EventHandler<Event>() {
 				public void handle(Event e) {
 					getChildren().clear();
-					entryView eview = new entryView();
+					entryView eview = new entryView(e.getSource());
 					setCenter(eview);
-					eview.giveNode(e.getSource());
 				}
 
 			});

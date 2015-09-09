@@ -1,11 +1,24 @@
-.root{
+#divgrid{
 	-fx-background-color:white;
 }
 #options{
-	-fx-background-color:white;
+	-fx-background-color:	#2980b9;
 	-fx-pref-width:150;
 }
+#options .button{
+	-fx-background-color:transparent;
+	-fx-pref-width:150;
+	-fx-pref-height:50;
+    -fx-border-width: 0;
+    -fx-border-style: none; 
+	-fx-border-color: transparent; 
+}
+#options .button{
+    -fx-border-width: 1;
+    -fx-border-style: none; 
+	-fx-border-color: black; 
+}
 #tlist{
-	-fx-background-color:white;
+	-fx-background-color:	#2b5797;
 	-fx-pref-width:150;
 }

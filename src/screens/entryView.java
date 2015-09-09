@@ -8,11 +8,13 @@ import javafx.scene.layout.*;
 import screens.database.LoadDiv;
 
 public class entryView extends BorderPane{
-	public entryView() {
+	int a=0;
+	LoadDiv div = new LoadDiv();
+	public entryView(Object object) {
 		getChildren().clear();
 		getStylesheets().add("css/entryView.css");
+        giveNode(object);
 		
-		LoadDiv div = new LoadDiv();
 		BorderPane mainpane = new BorderPane();
 		GridPane divgrid = new GridPane();
 		Label emptylab = new Label();
@@ -21,6 +23,7 @@ public class entryView extends BorderPane{
 		
 		options.setId("options");
 		tlist.setId("tlist");
+		divgrid.setId("divgrid");
 		
 		emptylab.setPrefHeight(100);
 		
@@ -35,22 +38,21 @@ public class entryView extends BorderPane{
         Button button6 = new Button("button6");
         toolBar.getItems().addAll(button1, button2, button3, button4, button5, button6);
         options.getChildren().clear();
-        options.getChildren().add(div);
+        options.getChildren().add(div.loadDiv());
 		divgrid.add(emptylab, 0, 0);
 		divgrid.add(toolBar, 0, 1);
 		divgrid.setAlignment(Pos.TOP_CENTER);
 		mainpane.setCenter(divgrid);
 		mainpane.setLeft(options);
 		mainpane.setRight(tlist);
-		setCenter(mainpane);
+		
 		addCloseButton cb = new addCloseButton();
 		cb.addxb();
 		setTop(cb);
+		setCenter(mainpane);
 	}
 	public void giveNode(Object object) {
-		LoadDiv div = new LoadDiv();
 		div.getNode(object);
-		div.loadDiv();
 	}
 	
 }

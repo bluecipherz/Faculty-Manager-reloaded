@@ -33,26 +33,19 @@ public class addCloseButton extends BorderPane{
 		getChildren().clear();
 		Button closebutton = new Button();
 		final Button backbutton = new Button();
-		final Button restorebutton = new Button();
-		final Button minimizebutton = new Button();
 		HBox backbox = new HBox();
 		HBox rightbox = new HBox();
 		GridPane rightpane = new GridPane();
 		getStylesheets().add("css/menubar.css");
 		
-		final Image back = new Image(getClass().getResourceAsStream("../img/arrow.png"));
-		final Image backdb = new Image(getClass().getResourceAsStream("../img/arrow-black.png"));
-		final Image restore = new Image(getClass().getResourceAsStream("../img/restore.png"));
-		final Image minimize = new Image(getClass().getResourceAsStream("../img/minimize.png"));
+		final Image back = new Image(getClass().getResourceAsStream("../img/back-35.png"));
+		final Image backdb = new Image(getClass().getResourceAsStream("../img/back-35-ash.png"));
 		Image close = new Image(getClass().getResourceAsStream("../img/close.png"));
 		closebutton.setGraphic(new ImageView(close));
 		backbutton.setGraphic(new ImageView(back));
-		restorebutton.setGraphic(new ImageView(restore));
-		minimizebutton.setGraphic(new ImageView(minimize));
 		
 		closebutton.setId("close-button");
 		backbutton.setId("back-button");
-		restorebutton.setId("restore-button");
 		backbox.setId("back-box");
 		rightbox.setId("right-box");
 		rightpane.setId("right-pane");
@@ -76,9 +69,7 @@ public class addCloseButton extends BorderPane{
 		
 		rightbox.getChildren().clear();
 		backbox.getChildren().clear();
-		rightpane.add(minimizebutton, 0, 0);
-		rightpane.add(restorebutton, 1, 0);
-		rightpane.add(closebutton, 2, 0);
+		rightpane.add(closebutton, 0, 0);
 		rightbox.getChildren().add(rightpane);
 		backbox.getChildren().add(backbutton);
 		setRight(rightbox);
