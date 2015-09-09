@@ -1,8 +1,11 @@
 package screens;
 
 import functions.addCloseButton;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
@@ -14,7 +17,7 @@ public class detailView extends BorderPane {
 	public detailView(){
 		
 		getChildren().clear();
-		getStylesheets().add("css/style.css");
+		getStylesheets().add("css/detail.css");
 		
 		GridPane optiongrid = new GridPane(); 
 		optiongrid.setId("optiongrid");
@@ -24,7 +27,7 @@ public class detailView extends BorderPane {
 		Button Monthview= new Button("Month View");
 		Button YearView= new Button("Year View");
 		Button IndividualView = new Button("Individual View");
-		Button labelbutton = new Button();
+		Label labelbutton = new Label();
 		labelbutton.setId("labelbutton");
 		Weekview.setId("Weekview");
 		Monthview.setId("Monthview");
@@ -35,13 +38,12 @@ public class detailView extends BorderPane {
 		Monthview.setAlignment(Pos.BASELINE_LEFT);
 		YearView.setAlignment(Pos.BASELINE_LEFT);
 		IndividualView.setAlignment(Pos.BASELINE_LEFT);
-		labelbutton.setStyle("-fx-background-image: url('img/BackButton.png');");
-		labelbutton.setPrefSize(150, 60);
+	//	labelbutton.setStyle("-fx-background-image: url('img/BackButton.png');");
+		labelbutton.setPrefSize(150, 30);
 		Weekview.setPrefSize(150, 30);
 		Monthview.setPrefSize(150, 30);
 		YearView.setPrefSize(150, 30);
 		IndividualView.setPrefSize(150, 30);
-		
 		
 
 		setLeft(optiongrid);
@@ -62,6 +64,14 @@ public class detailView extends BorderPane {
 		
 //		BUTTON ACTIONS
 		
+		Monthview.setOnAction(new EventHandler<ActionEvent>() {
+			
+			public void handle(ActionEvent ae) {
+				getChildren().clear();
+				final monthView mview = new monthView();
+				setCenter(mview);
+			}
+		});
 		
 			
 			}

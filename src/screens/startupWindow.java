@@ -6,6 +6,8 @@ import javafx.event.*;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.effect.Reflection;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
 public class startupWindow extends BorderPane{
@@ -13,12 +15,11 @@ public class startupWindow extends BorderPane{
 startupWindow(){
 	
 	getChildren().clear();
-	getStylesheets().add("css/style.css");
+	getStylesheets().add("css/startupwindow.css");
 	
 	animations a= new animations();
 	addCloseButton cb = new addCloseButton();
 	GridPane startupgrid = new GridPane();
-	VBox startgaphbox = new VBox();
 	final Button detailb = new Button("Detail Mode");
 	final Button entryb = new Button("Entry Mode");
 	
@@ -30,6 +31,7 @@ startupWindow(){
 
 	detailb.setId("detailb");
 	entryb.setId("entryb");
+	startupgrid.setId("startupgrid");
 
 //CSS OF STARUPWINDOW	
 	
@@ -45,7 +47,7 @@ startupWindow(){
     entryb.setEffect(r1);
     detailb.setEffect(r2);
     
-    a.transition(a.path(0,10,100),entryb,1500,1);
+    a.transition(a.path(0,15,60),entryb,1500,1);
    
     a.fadeIn(entryb,1500,0,1,1);
     try {
@@ -54,7 +56,7 @@ startupWindow(){
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-    a.transition(a.path(0,10,100),detailb,1500,1);
+    a.transition(a.path(0,15,60),detailb,1500,1);
     a.fadeIn(detailb,1500,0,1,1);
     
 //ACTIONS OF STARTUPWINDOW	
@@ -77,28 +79,16 @@ startupWindow(){
 		}
 	});
 	
-//	detailb.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//
-//		public void handle(MouseEvent e) {
-//			
-//		}
-//		
-//	});
 	
 	
-	startgaphbox .setMinSize(10, 10);
-	detailb.setPrefWidth(185);
-	detailb.setPrefHeight(100);
-	entryb.setPrefWidth(185);
-	entryb.setPrefHeight(100);
 	
 	setCenter(startupgrid);
 	startupgrid.add(entryb, 0, 0);
-	startupgrid.add(startgaphbox, 1, 0);
-	startupgrid.add(detailb, 2, 0);
+	startupgrid.add(detailb, 1, 0);
+	
+	startupgrid.setHgap(5);
 	
 	startupgrid .setAlignment(Pos.CENTER);
-	startupgrid .setMinSize(10, 10);
 	cb.addx();
 	setTop(cb);
 	

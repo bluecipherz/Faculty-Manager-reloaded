@@ -1,10 +1,13 @@
 package screens;
 
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Labeled;
 import javafx.scene.layout.*;
+import javafx.scene.text.TextAlignment;
 
 public class weekView extends BorderPane {
 	
@@ -54,19 +57,24 @@ public class weekView extends BorderPane {
 			for(int j=0;j<=6;j++) {
 				
 				prdgrid.add(new Label("prd"+ i + j ), j, i);
-			}
+				//((Labeled) prdgrid.getChildren()).setTextAlignment(TextAlignment.CENTER);
 			
 		}
-			
+		
+//		for(int k=0;k<=36;k++) {
+//			prdgrid.getChildren().setTextAlignment(TextAlignment.CENTER);
+//		}
 		prdgrid.setAlignment(Pos.CENTER);
 		weekgrid.setAlignment(Pos.TOP_CENTER);
+		
 		
 		weekgrid.setVgap(3);
 		prdgrid.setHgap(5);
 		prdgrid.setVgap(5);
 		
 		prdgrid .setMinSize(10, 10);
-		weekscrollpane .setMinSize(550, 30);
+		weekscrollpane .setMinSize(700, 40);
+		weekgrid .setMinSize(700, 40);
 		
 		
 		
@@ -79,4 +87,5 @@ public class weekView extends BorderPane {
 		setCenter(weekgrid);
 		
 	}
+}
 }
