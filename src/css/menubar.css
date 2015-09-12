@@ -1,3 +1,6 @@
+.root{
+	-fx-background-color:#3498db;
+}
 #close-button{
 	-fx-max-height:10;
     -fx-padding: 0 0 0 0;
@@ -6,6 +9,7 @@
 	-fx-focus-color: transparent;
 	-fx-border-width: 0;
 	-fx-border-style: none; 
+	-fx-background-radius: 0;
 }
 #close-button:hover{
     -fx-border-color: transparent;

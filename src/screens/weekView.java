@@ -15,6 +15,7 @@ public class weekView extends BorderPane {
 		
 		getChildren().clear();
 		getStylesheets().add("css/week.css");
+		setStyle("-fx-background-color:#bdc3c7;");
 		
 		BorderPane combopane = new BorderPane();
 		BorderPane weekscrollpane = new BorderPane();

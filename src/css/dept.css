@@ -8,6 +8,7 @@
     -fx-text-fill: white;
 	-fx-pref-width:250;
 	-fx-pref-height:120;
+	-fx-background-radius: 0;
 }
 #scroll{
 	-fx-padding:100 0 0 0;

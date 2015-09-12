@@ -47,7 +47,7 @@ public class entryView extends BorderPane{
 		mainpane.setRight(tlist);
 		
 		addCloseButton cb = new addCloseButton();
-		cb.addxb();
+		cb.addxb(1);
 		setTop(cb);
 		setCenter(mainpane);
 	}

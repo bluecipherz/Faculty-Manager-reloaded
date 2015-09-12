@@ -59,7 +59,7 @@ public class detailView extends BorderPane {
 		
 		centerpane.setCenter(wview);
 		setCenter(centerpane);
-		cb.addxb();
+		cb.addxb(0);
 		setTop(cb);
 		
 //		BUTTON ACTIONS

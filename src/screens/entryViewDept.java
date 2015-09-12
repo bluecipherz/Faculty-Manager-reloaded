@@ -105,7 +105,7 @@ public class entryViewDept extends BorderPane{
 		deptgrid.setAlignment(Pos.CENTER);
 		deptgrid.setVgap(8);
 		deptgrid.setHgap(8);
-		cb.addxb();
+		cb.addxb(0);
 		cb.setCenter(title);
 		setTop(cb);
 		setCenter(hscrollpane);

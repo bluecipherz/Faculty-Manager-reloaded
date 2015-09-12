@@ -1,19 +1,30 @@
 package functions;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
+import screens.*;
 
 public class addCloseButton extends BorderPane{
+	public static Stage primaryStage =null;
+	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	Scene scene = null;
+	public static int stageno;
 	public void addx() {
 		getChildren().clear();
+		setStyle("-fx-background-color:#3498db;");
 		Button closebutton = new Button();
 		closebutton.getStylesheets().add("css/menubar.css");
 //		try {
@@ -28,10 +39,12 @@ public class addCloseButton extends BorderPane{
 		});
 		setRight(closebutton);
 	}
-	public void addxb() {
+	public void addxb(int no) {
 		try {
 		getChildren().clear();
+		setStyle("-fx-background-color:#3498db;");
 		Button closebutton = new Button();
+		stageno = no;
 		final Button backbutton = new Button();
 		HBox backbox = new HBox();
 		HBox rightbox = new HBox();
@@ -53,6 +66,7 @@ public class addCloseButton extends BorderPane{
 		backbutton.setOnMousePressed(new EventHandler<Event>() {
 			public void handle(Event arg0) {
 				backbutton.setGraphic(new ImageView(backdb));
+				setScreen();
 			}
 		});
 		backbutton.setOnMouseReleased(new EventHandler<Event>() {
@@ -75,5 +89,23 @@ public class addCloseButton extends BorderPane{
 		setRight(rightbox);
 		setLeft(backbox);
 		}catch(Exception e) {System.out.println(e);}
+	}
+	public void getStage(Stage stage) {
+		primaryStage=stage;
+	}
+	public void setScreen() {
+		switch(stageno) {
+		case 0:
+			startupWindow start = new startupWindow();
+			scene = new Scene(start,screenSize.getWidth(),screenSize.getHeight()-40);
+			break;
+		case 1:
+			entryViewDept dept = new entryViewDept();
+			scene = new Scene(dept,screenSize.getWidth(),screenSize.getHeight()-40);
+			break;
+		}
+		
+		primaryStage.setScene(scene);
+		primaryStage.show();
 	}
 }

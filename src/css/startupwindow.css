@@ -1,11 +1,9 @@
-
 .root{
-    -fx-background-color: #d35400;
+	-fx-background-color:#3498db;
 }
-
 #startupgrid{
-	-fx-border-width:2;
-	-fx-border-color:#000;
+	-fx-border-width:0;
+	-fx-border-color:#ecf0f1;
 	-fx-padding:0 0 0 80;
 }
 

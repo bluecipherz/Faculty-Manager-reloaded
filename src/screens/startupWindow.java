@@ -9,13 +9,15 @@ import javafx.scene.effect.Reflection;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.stage.Stage;
 
 public class startupWindow extends BorderPane{
 	
-startupWindow(){
+public startupWindow(){
 	
 	getChildren().clear();
 	getStylesheets().add("css/startupwindow.css");
+	setStyle("-fx-background-color:#3498db;");
 	
 	animations a= new animations();
 	addCloseButton cb = new addCloseButton();
