@@ -24,7 +24,8 @@ public class addCloseButton extends BorderPane{
 	public static int stageno;
 	public void addx() {
 		getChildren().clear();
-		setStyle("-fx-background-color:#3498db;");
+		setStyle("-fx-background-color:#3498db;"
+				+ "-fx-padding: 0 3 0 0;");
 		Button closebutton = new Button();
 		closebutton.getStylesheets().add("css/menubar.css");
 //		try {
@@ -42,7 +43,8 @@ public class addCloseButton extends BorderPane{
 	public void addxb(int no) {
 		try {
 		getChildren().clear();
-		setStyle("-fx-background-color:#3498db;");
+		setStyle("-fx-background-color:#3498db;"
+				+ "-fx-padding: 0 3 0 0;");
 		Button closebutton = new Button();
 		stageno = no;
 		final Button backbutton = new Button();

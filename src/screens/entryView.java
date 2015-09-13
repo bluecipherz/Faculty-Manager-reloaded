@@ -16,16 +16,21 @@ public class entryView extends BorderPane{
         giveNode(object);
 		
 		BorderPane mainpane = new BorderPane();
+		BorderPane centerpane = new BorderPane();
+		BorderPane bottompane = new BorderPane();
 		GridPane divgrid = new GridPane();
 		Label emptylab = new Label();
 		VBox options = new VBox();
 		VBox tlist = new VBox();
+		Button ok = new Button("ok");
 		
 		options.setId("options");
 		tlist.setId("tlist");
 		divgrid.setId("divgrid");
+		bottompane.setId("bottompane");
 		
 		emptylab.setPrefHeight(100);
+		bottompane.setStyle("-fx-background-color:#ecf0f1;");
 		
 		
 		ToolBar toolBar = new ToolBar();
@@ -42,9 +47,12 @@ public class entryView extends BorderPane{
 		divgrid.add(emptylab, 0, 0);
 		divgrid.add(toolBar, 0, 1);
 		divgrid.setAlignment(Pos.TOP_CENTER);
-		mainpane.setCenter(divgrid);
+		mainpane.setCenter(centerpane);
 		mainpane.setLeft(options);
 		mainpane.setRight(tlist);
+		centerpane.setCenter(divgrid);
+		centerpane.setBottom(bottompane);
+		bottompane.setRight(ok);
 		
 		addCloseButton cb = new addCloseButton();
 		cb.addxb(1);

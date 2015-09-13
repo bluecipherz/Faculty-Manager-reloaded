@@ -32,7 +32,7 @@ public class entryViewDept extends BorderPane{
 		hscrollpane.setHbarPolicy(ScrollBarPolicy.ALWAYS);
 		
 		String str="";
-		int i =0,j=1,count=0;
+		int i =0,j=1,count=0,items=0,mchecker=0;
 		
 		title.setId("title");
 		deptgrid.setId("grid");
@@ -46,30 +46,72 @@ public class entryViewDept extends BorderPane{
 		
 		try {
 			Class.forName("org.sqlite.JDBC");
-		
-		Connection connection = DriverManager.getConnection("jdbc:sqlite:sample.db");
-		Statement statement = connection.createStatement();
-		ResultSet rs = statement.executeQuery("select * from TimeScheduler");
-		deptgrid.add(emptylabel, 0, 0);
-		try{
-		while (rs.next()) {
-			if(str.equals(rs.getString("dept"))){
-				continue;
+			Connection connection = DriverManager.getConnection("jdbc:sqlite:sample.db");
+			Statement statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery("select * from TimeScheduler");
+			deptgrid.add(emptylabel, 0, 0);
+			
+			///////////////////////////////////////////////////////////////////////
+			while(rs.next()) {
+				items++;
 			}
-			else {
-				if(i==4) {
-					i=0;j++;
+			rs = statement.executeQuery("select * from TimeScheduler");
+			String[] istring = new String[items];
+			istring[0]="a";
+			items=0;
+			while(rs.next()) {
+				for(int ch=0;ch<items;ch++) {
+					if(istring[ch].equals(rs.getString("dept"))) {
+//						System.out.println("equal");
+						mchecker=1;
+					}
 				}
-				deptgrid.add(new Button(rs.getString("dept")),j,i);
-				str=rs.getString("dept");
-				i++;
-				count++;
+//				if(istring[items].equals(rs.getString("dept"))) {
+//					break;
+//				}
+				if(mchecker==0) {
+					istring[items]=rs.getString("dept");
+					items++;
+					if(i==4) {
+						i=0;j++;
+					}
+					deptgrid.add(new Button(rs.getString("dept")),j,i);
+					str=rs.getString("dept");
+					i++;
+					count++;
+				}
+				mchecker=0;
 			}
-		}
-		}catch(Exception e){System.out.println(e);}
+			for(int ch=0;ch<items;ch++) {
+				System.out.println(istring[ch]);
+			}
+			
+			//////////////////////////////////////////////////////////////
+			
+
+//			rs = statement.executeQuery("select * from TimeScheduler");
+//				try{
+//					while (rs.next()) {
+//						if(str.equals(rs.getString("dept"))){
+//							continue;
+//						}
+//						else {
+//							if(i==4) {
+//								i=0;j++;
+//							}
+//							deptgrid.add(new Button(rs.getString("dept")),j,i);
+//							str=rs.getString("dept");
+//							i++;
+//							count++;
+//						}
+//					}
+//				}catch(Exception e){System.out.println(e);}
+		
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+		
+		
 		animation.fadeIn(deptgrid, 1500, 0, 1, 0);
 		
 		for(i=1;i<=count;i++) {
