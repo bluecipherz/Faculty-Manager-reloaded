@@ -82,9 +82,9 @@ public class entryViewDept extends BorderPane{
 				}
 				mchecker=0;
 			}
-			for(int ch=0;ch<items;ch++) {
-				System.out.println(istring[ch]);
-			}
+//			for(int ch=0;ch<items;ch++) {
+//				System.out.println(istring[ch]);
+//			}
 			
 			//////////////////////////////////////////////////////////////
 			

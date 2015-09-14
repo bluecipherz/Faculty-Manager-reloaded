@@ -1,0 +1,13 @@
+
+#title{
+	-fx-pref-width:200;
+	-fx-pref-height:100;
+	-fx-background-color:#ecf0f1;
+	-fx-border-width:0;
+	-fx-text-fill:grey;
+	-fx-font-size:30px;
+	-fx-alignment:center;	
+}
+#list{
+	-fx-background-color:#ecf0f1;
+}

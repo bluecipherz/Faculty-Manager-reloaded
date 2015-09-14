@@ -17,6 +17,7 @@ public class LoadDiv{
 	String[] str = null;
 	public GridPane loadDiv() {
 		GridPane maingrid = new GridPane();
+		maingrid.setVgap(2);
 		Button add = new Button("add");
 		try {
 			Class.forName("org.sqlite.JDBC");
@@ -46,6 +47,8 @@ public class LoadDiv{
 					}
 				}
 			});
+			
+		
 		maingrid.setAlignment(Pos.TOP_CENTER);
 //		maingrid.setVgap(1);
 		}catch(Exception e) {System.out.println(e);}
