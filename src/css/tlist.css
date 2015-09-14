@@ -1,13 +1,41 @@
-
+#toppane{
+	-fx-border-width:5;
+	-fx-border-color:#ecf0f1;
+}
 #title{
 	-fx-pref-width:200;
 	-fx-pref-height:100;
 	-fx-background-color:#ecf0f1;
 	-fx-border-width:0;
 	-fx-text-fill:grey;
-	-fx-font-size:30px;
+	-fx-font-family: "Segoe UI light";
+	-fx-font-size:25px;
 	-fx-alignment:center;	
 }
 #list{
 	-fx-background-color:#ecf0f1;
+}
+#list .label{
+	-fx-pref-width:200;
+	-fx-pref-height:50;
+	-fx-background-color:#3498db;
+	-fx-text-fill:white;
+	-fx-font-size:20px;
+	-fx-alignment:center;
+}
+.text-input{
+    -fx-background-radius: 0, 0;
+    -fx-background-color: #ecf0f1;
+    -fx-border-color: #3498db;
+    -fx-background-insets: 0;
+    -fx-prompt-text-fill: #818181;
+    -fx-highlight-fill: #008287; /* TODO: this probably is the "active" color" */
+    -fx-highlight-text-fill: white;
+    -fx-text-fill: grey;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 14px;
+	-fx-background-image:url('../img/search.png');
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: right center;
+    
 }
