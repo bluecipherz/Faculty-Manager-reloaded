@@ -22,6 +22,11 @@
 	-fx-border-color:white;
 	
 }
+#options .button:selected{
+    -fx-background-color:#bdc3c7;
+	-fx-border-color:white;
+	
+}
 #options .button:hover{
     -fx-background-color: #bdc3c7;
 }

@@ -20,10 +20,10 @@ public class TeacherDatabase{
 //		statement.executeQuery("drop table if exists "+name);
 //		statement.executeUpdate("create table if not exists "+name+" (id integer,date Date,period string, dept string, div string)");
 	}
-	public void inseart(String name) throws ClassNotFoundException, SQLException {
-//		Class.forName("org.sqlite.JDBC");
-//		Connection connection = DriverManager.getConnection("jdbc:sqlite:sample.db");
-//		Statement statement = connection.createStatement();
-		
+	public void insertDatabase(String name) throws ClassNotFoundException, SQLException {
+		Class.forName("org.sqlite.JDBC");
+		Connection connection = DriverManager.getConnection("jdbc:sqlite:sample.db");
+		Statement statement = connection.createStatement();
+		statement.executeUpdate("insert or replace into teacherslist (name) values('"+name+"')");
 	}
 }

@@ -54,3 +54,24 @@
 {
     -fx-background-size: 85, 85;
 }
+#settings-box{
+	-fx-border-width:0;
+	-fx-border-color:red;
+	-fx-background-color:transparent;
+	-fx-padding:50 100 100 20;
+}
+#settings{
+    -fx-font-family: "Segoe UI Light ";
+   	-fx-font-size: 12pt;
+   	-fx-text-fill: #ecf0f1;
+   	-fx-background-color: transparent;
+   	-fx-Pref-Width:70;
+ 	-fx-Pref-Height:40;
+	-fx-padding:0;
+	-fx-border-width:1;
+	-fx-border-color:#ecf0f1;	
+}
+#settings:hover{
+   	-fx-background-color: #2980b9;
+	-fx-background-radius:0;
+}

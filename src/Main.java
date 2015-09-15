@@ -1,4 +1,4 @@
-import database.StartDatabase;
+import database.*;
 import functions.getStage;
 import javafx.application.Application;
 import javafx.concurrent.Task;
@@ -28,7 +28,8 @@ public class Main extends Application{
 		getStage g = new getStage();
 		g.returnStage(primaryStage);
 		////////////////////////////////////////////////////
-		new StartDatabase();
+		ClassDatabase data = new ClassDatabase();
+		data.createDatabase();
 		
 		////////////////////next page///////////////////////
 		

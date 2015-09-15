@@ -9,6 +9,7 @@
 	-fx-pref-width:250;
 	-fx-pref-height:120;
 	-fx-background-radius: 0;
+	-fx-background-color:#95a5a6;
 }
 #scroll{
 	-fx-padding:100 0 0 0;

@@ -48,14 +48,14 @@ public class entryViewDept extends BorderPane{
 			Class.forName("org.sqlite.JDBC");
 			Connection connection = DriverManager.getConnection("jdbc:sqlite:sample.db");
 			Statement statement = connection.createStatement();
-			ResultSet rs = statement.executeQuery("select * from TimeScheduler");
+			ResultSet rs = statement.executeQuery("select * from class");
 			deptgrid.add(emptylabel, 0, 0);
 			
 			///////////////////////////////////////////////////////////////////////
 			while(rs.next()) {
 				items++;
 			}
-			rs = statement.executeQuery("select * from TimeScheduler");
+			rs = statement.executeQuery("select * from class");
 			String[] istring = new String[items];
 			istring[0]="a";
 			items=0;
@@ -89,7 +89,7 @@ public class entryViewDept extends BorderPane{
 			//////////////////////////////////////////////////////////////
 			
 
-//			rs = statement.executeQuery("select * from TimeScheduler");
+//			rs = statement.executeQuery("select * from class");
 //				try{
 //					while (rs.next()) {
 //						if(str.equals(rs.getString("dept"))){

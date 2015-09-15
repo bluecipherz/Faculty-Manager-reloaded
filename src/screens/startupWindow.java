@@ -1,6 +1,6 @@
 package screens;
 
-import functions.addCloseButton;
+import functions.*;
 import animations.animations;
 import javafx.event.*;
 import javafx.geometry.Pos;
@@ -24,6 +24,8 @@ public startupWindow(){
 	GridPane startupgrid = new GridPane();
 	final Button detailb = new Button("Detail Mode");
 	final Button entryb = new Button("Entry Mode");
+	final Button settings = new Button("Settings");
+	HBox settingsbox = new HBox();
 	
 //	Image close = new Image(getClass().getResourceAsStream("../img/detailicon.png"));
 //    detailb.setGraphic(new ImageView(close));
@@ -34,6 +36,8 @@ public startupWindow(){
 	detailb.setId("detailb");
 	entryb.setId("entryb");
 	startupgrid.setId("startupgrid");
+	settings.setId("settings");
+	settingsbox.setId("settings-box");
 
 //CSS OF STARUPWINDOW	
 	
@@ -80,11 +84,18 @@ public startupWindow(){
 			setCenter(eviewdept);
 		}
 	});
+	settings.setOnAction(new EventHandler<ActionEvent>() {
+		public void handle(ActionEvent arg0) {
+			getChildren().clear();
+			Settings set = new Settings();
+			setCenter(set);
+		}
+	});
 	
 	
-	
-	
+	settingsbox.getChildren().add(settings);
 	setCenter(startupgrid);
+	setRight(settingsbox);
 	startupgrid.add(entryb, 0, 0);
 	startupgrid.add(detailb, 1, 0);
 	

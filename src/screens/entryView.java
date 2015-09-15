@@ -33,29 +33,7 @@ public class entryView extends BorderPane{
 		VBox tlist = new VBox();
 		Button ok = new Button("ok");
 		HBox periods = new HBox(1);
-		Label test = new Label("testing");
-		Label test1 = new Label("test2");
 		TList loadteacher = new TList();
-//		tlist.getChildren().add(test);
-//		tlist.getChildren().add(test1);
-		ClipboardContent content = new ClipboardContent();
-		
-		
-		////////////////////////////////////////////
-		test.setOnDragDetected(e -> {
-			Dragboard db = test.startDragAndDrop(TransferMode.COPY);
-			db.setDragView(new Text(test.getText()).snapshot(null, null), e.getX()-10, e.getY()-10);
-			content.putString(test.getText());
-			db.setContent(content);
-			
-		});
-		test1.setOnDragDetected(e -> {
-			Dragboard db = test1.startDragAndDrop(TransferMode.COPY);
-			db.setDragView(new Text(test1.getText()).snapshot(null, null), e.getX()-10, e.getY()-10);
-			content.putString(test1.getText());
-			db.setContent(content);
-			
-		});
 		
 		
 		
@@ -165,7 +143,6 @@ public class entryView extends BorderPane{
 		     }
 		});
 		
-//		tlist.getChildren().add(loadteacher);
         options.getChildren().clear();
         options.getChildren().add(maingrid);
         divgrid.setHgap(5);

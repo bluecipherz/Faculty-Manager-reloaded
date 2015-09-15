@@ -105,8 +105,11 @@ public class addCloseButton extends BorderPane{
 			entryViewDept dept = new entryViewDept();
 			scene = new Scene(dept,screenSize.getWidth(),screenSize.getHeight()-40);
 			break;
+		case 2:
+			Settings set = new Settings();
+			scene = new Scene(set,screenSize.getWidth(),screenSize.getHeight()-40);
+			break;
 		}
-		
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}

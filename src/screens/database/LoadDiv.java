@@ -23,7 +23,7 @@ public class LoadDiv{
 			Class.forName("org.sqlite.JDBC");
 			Connection connection = DriverManager.getConnection("jdbc:sqlite:sample.db");
 			Statement statement = connection.createStatement();
-			ResultSet rs = statement.executeQuery("select * from TimeScheduler where dept = '"+str[1]+"'");
+			ResultSet rs = statement.executeQuery("select * from class where dept = '"+str[1]+"'");
 			int i=0;
 			while(rs.next()) {
 				maingrid.add(new Button(rs.getString("div")), 0, i);
@@ -35,7 +35,7 @@ public class LoadDiv{
 					try {
 						update(statement);
 						maingrid.getChildren().clear();
-						ResultSet rs = statement.executeQuery("select * from TimeScheduler where dept = '"+str[1]+"'");
+						ResultSet rs = statement.executeQuery("select * from class where dept = '"+str[1]+"'");
 						int i=0;
 						while(rs.next()) {
 							maingrid.add(new Button(rs.getString("div")), 0, i);
@@ -60,7 +60,7 @@ public class LoadDiv{
 //		System.out.println(str[1]);
 	}
 	public void update(Statement statement) throws SQLException {
-		ResultSet rs = statement.executeQuery("select * from TimeScheduler where dept = '"+str[1]+"'");
+		ResultSet rs = statement.executeQuery("select * from class where dept = '"+str[1]+"'");
 		String lastdiv = "A";
 		char[] newdiv;
 		while(rs.next()) {
@@ -72,7 +72,7 @@ public class LoadDiv{
 			alphabet++;
 			if(alphabet=='[')break;
 //			System.out.println(str[1]);
-			statement.executeUpdate("insert into timeScheduler (dept, div) values('"+str[1]+"','"+alphabet+"')");
+			statement.executeUpdate("insert into class (dept, div) values('"+str[1]+"','"+alphabet+"')");
 			break;
 		}
 	}

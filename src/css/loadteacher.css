@@ -1,6 +1,6 @@
-#toppane{
+.root{
 	-fx-border-width:5;
-	-fx-border-color:#ecf0f1;
+	-fx-border-color:transparent;
 }
 #title{
 	-fx-pref-width:200;
@@ -12,66 +12,29 @@
 	-fx-font-size:25px;
 	-fx-alignment:center;	
 }
-#list{
-	-fx-background-color:#ecf0f1;
-}
-#list .label{
-	-fx-pref-width:200;
-	-fx-pref-height:50;
-	-fx-background-color:#3498db;
-	-fx-text-fill:white;
-	-fx-font-size:20px;
-	-fx-alignment:center;
-}
-#border{
-	-fx-border-width:10;
-	-fx-border-color:#ecf0f1;
-}
-#grid{
-	-fx-background-color:#ecf0f1;
-}
-.text-input{
-    -fx-background-radius: 0, 0;
-    -fx-background-color: #ecf0f1;
-    -fx-border-color: #3498db;
-    -fx-background-insets: 0;
-    -fx-prompt-text-fill: #818181;
-    -fx-highlight-fill: #008287; /* TODO: this probably is the "active" color" */
-    -fx-highlight-text-fill: white;
-    -fx-text-fill: grey;
-    -fx-font-family: "Segoe UI Light";
-    -fx-font-size: 14px;
-	-fx-background-image:url('../img/search.png');
-	-fx-background-repeat: no-repeat;
-	-fx-background-position: right center;
-    
-}
-.list-cell:filled:focused, .list-cell:filled:selected {
-    -fx-background-color: #bdc3c7;
+.list-cell:filled:selected:focused, .list-cell:filled:selected {
+    -fx-background-color: #426cad;
     -fx-text-fill: white;
 }
 
 .list-cell { /* <=== changed to even */
-    -fx-background-color: #ecf0f1;
-    -fx-text-fill: grey;
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
     -fx-cell-size: 3.4em; /* 24 */
-    -fx-font: 15px "Segoe UI Semibold";
+    -fx-font: 12px "Segoe UI Semibold";
     -fx-alignment: CENTER;
-	-fx-border-width:0;
     -fx-border-color:transparent;
 }
 
 .list-cell:filled:hover {
-    -fx-background-color:#3498db;
-    -fx-text-fill: white;
+    -fx-background-color: #ecf0f1;
+    -fx-text-fill: grey;
 }
 
 .list-view{
-    -fx-background-color: #ecf0f1;
+    -fx-background-color: #2b579a;
     -fx-border-insets: 0;
     -fx-background-insets: 0;
-	-fx-border-width:0;
-	-fx-border-color:#ecf0f1;
 }
 
 .scroll-bar .thumb{
@@ -152,5 +115,5 @@
 }
 
 .scroll-bar:disabled {
-    -fx-opacity: 0.1;
+    -fx-opacity: 0.4;
 }

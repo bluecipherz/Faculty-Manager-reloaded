@@ -8,9 +8,15 @@ import java.sql.Statement;
 import java.util.function.Consumer;
 
 import database.TeacherDatabase;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
@@ -19,56 +25,84 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 
 public class LoadTeachers extends GridPane{
+
+	ObservableList<String> entries = FXCollections.observableArrayList();
+	ListView<String> list = new ListView<String>();
+	
 	public LoadTeachers(){
 		TeacherDatabase t = new TeacherDatabase();
-		ClipboardContent content = new ClipboardContent();
+		TextField search = new TextField();
+		
+
+		list.setPrefWidth(200);
+		list.setPrefHeight(600);
 		try {
 			t.create("neethi");
 		
 		
-		Class.forName("org.sqlite.JDBC");
-		Connection connection = DriverManager.getConnection("jdbc:sqlite:sample.db");
-		Statement statement = connection.createStatement();
-		ResultSet rs = statement.executeQuery("select * from teacherslist");
-		int i=0;
-		while(rs.next()) {
-			Label label = new Label(rs.getString("name"));
-//			setRowIndex(label, i);
-//			setColumnIndex(label, i);
-			add(new Label(rs.getString("name")), 0, i);
-//			getChildren().lastIndexOf()
-//			getChildren().get(i).setOnDragDetected(e -> {
-//				Dragboard db = getChildren().get(0).startDragAndDrop(TransferMode.COPY);
-////				db.setDragView(new Text(test.getText()).snapshot(null, null), e.getX()-10, e.getY()-10);
-//				content.putString(((Label)getChildren().get(0)).getText());
-//				db.setContent(content);
-//				
-//			});
-			i++;
-		}
-		addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent e) {
-
-                for( Node node: getChildren()) {
-
-                    if( node instanceof Label) {
-//                        if( node.getBoundsInParent().contains(e.getSceneX(),  0)) {
-//                            System.out.println(node);
-                            node.setOnDragDetected(g -> {
-                    			Dragboard db = node.startDragAndDrop(TransferMode.COPY);
-//                    			db.setDragView(new Text(node.getText()).snapshot(null, null), e.getX()-10, e.getY()-10);
-                    			content.putString(((Label)node).getText());
-                    			db.setContent(content);
-                    			
-                    		});
-//                        }
-                    }
-                }
-            }
-        });
+			Class.forName("org.sqlite.JDBC");
+			Connection connection = DriverManager.getConnection("jdbc:sqlite:sample.db");
+			Statement statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery("select * from teacherslist");
+			int i=0;
+			
+			while(rs.next()) {
+//				Label label = new Label(rs.getString("name"));
+//				add(new Label(rs.getString("name")), 0, i);
+				entries.add(rs.getString("name"));
+				i++;
+			}
+			list.setItems(entries);
+			
+			
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+		
+		try {
+//			for(String part : entries) {
+				
+			list.setOnDragDetected(e -> {
+				ClipboardContent content = new ClipboardContent();
+				Dragboard db = list.startDragAndDrop(TransferMode.COPY);
+//    			db.setDragView(new Text(((Label)node).getText()).snapshot(null, null), e.getX(), e.getY());
+    			content.putString(list.getSelectionModel().getSelectedItem());
+    			db.setContent(content);
+			});
+			
+//			}
+		}catch(Exception e) {System.out.println(e);}
+
+		search.setPromptText("search");
+		search.textProperty().addListener(new ChangeListener<Object>() {
+			public void changed(ObservableValue<? extends Object> observable, Object oldValue, Object newValue) {
+				search( (String)oldValue, (String)newValue );
+			}
+		});
+		add(search, 0, 0);
+		add(list, 0, 1);
+		setId("grid");
+	}
+	public void search(String oldVal, String newVal) {
+		if ( oldVal != null && (newVal.length() < oldVal.length()) ) {
+			list.setItems(entries);
+		}
+		String[] parts = newVal.toUpperCase().split(" ");
+		ObservableList<String> subentries = FXCollections.observableArrayList();
+		for(Object entry : list.getItems()) {
+			boolean match = true;
+			String entryset = (String)entry;
+			for(String part : parts) {
+				if (! entryset.toUpperCase().contains(part)) {
+					match=false;
+					break;
+					
+				}
+			}
+			if (match) {
+				subentries.add(entryset);
+			}
+		}
+		list.setItems(subentries);
 	}
 }
