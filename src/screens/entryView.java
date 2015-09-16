@@ -1,5 +1,8 @@
 package screens;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import functions.addCloseButton;
 import javafx.application.Platform;
 import javafx.event.Event;
@@ -11,12 +14,15 @@ import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import javafx.util.StringConverter;
+import load.Periods;
 import load.TList;
-import screens.database.LoadDiv;
+import screens.database.*;
 
 public class entryView extends BorderPane{
 	int a=0,i=0;
 	LoadDiv div = new LoadDiv();
+	ListView list;
 	public entryView(Object object) {
 		getChildren().clear();
 		getStylesheets().add("css/entryView.css");
@@ -28,12 +34,14 @@ public class entryView extends BorderPane{
 		GridPane divgrid = new GridPane();
 		GridPane maingrid = new GridPane();
 		Label emptylab = new Label();
-		Label divlab = new Label("A");
+		Label divlab = new Label();
 		VBox options = new VBox();
 		VBox tlist = new VBox();
 		Button ok = new Button("ok");
-		HBox periods = new HBox(1);
+		Periods periods = new Periods();
 		TList loadteacher = new TList();
+		DatePicker date = new DatePicker();
+		BorderPane datepane = new BorderPane();
 		
 		
 		
@@ -43,98 +51,49 @@ public class entryView extends BorderPane{
 		bottompane.setId("bottompane");
 		periods.setId("period");
 		divlab.setId("divlabel");
+		datepane.setId("datepane");
 		
 		
 		emptylab.setPrefHeight(100);
 		bottompane.setStyle("-fx-background-color:#ecf0f1;");
 		
 
-		while(i<6) {
-			periods.getChildren().add(new Label());
-			i++;
-		}
+		StringConverter converter = new StringConverter<LocalDate>() {
+	        DateTimeFormatter dateFormatter = 
+	            DateTimeFormatter.ofPattern("dd-MM-yyyy");
+	        
+	        @Override
+	        public String toString(LocalDate date) {
+	            if (date != null) {
+	                return dateFormatter.format(date);
+	            } else {
+	                return "";
+	            }
+	        }
+	        @Override
+	        public LocalDate fromString(String string) {
+	            if (string != null && !string.isEmpty()) {
+	                return LocalDate.parse(string, dateFormatter);
+	            } else {
+	                return null;
+	            }
+	        }
+	    };           
+	    date.setConverter(converter);
+	    date.setPromptText("dd-MM-yyyy".toLowerCase());
 		
-//		for(i=0;i<6;i++) {
+		date.setValue(LocalDate.now());
 		
-		periods.getChildren().get(0).setOnDragOver(e -> {
-            e.acceptTransferModes(TransferMode.COPY);
-        });
-		periods.getChildren().get(0).setOnDragDropped(e ->{
-			Dragboard db = e.getDragboard();
-			if (db.hasString()) {
-				((Label)periods.getChildren().get(0)).setText(db.getString());
-                e.setDropCompleted(true);
-            } else {
-                e.setDropCompleted(false);
-            }
-		});
-		
-		periods.getChildren().get(1).setOnDragOver(e -> {
-            e.acceptTransferModes(TransferMode.COPY);
-        });
-		periods.getChildren().get(1).setOnDragDropped(e ->{
-			Dragboard db = e.getDragboard();
-			if (db.hasString()) {
-				((Label)periods.getChildren().get(1)).setText(db.getString());
-                e.setDropCompleted(true);
-            } else {
-                e.setDropCompleted(false);
-            }
-		});
-		
-		periods.getChildren().get(2).setOnDragOver(e -> {
-            e.acceptTransferModes(TransferMode.COPY);
-        });
-		periods.getChildren().get(2).setOnDragDropped(e ->{
-			Dragboard db = e.getDragboard();
-			if (db.hasString()) {
-				((Label)periods.getChildren().get(2)).setText(db.getString());
-                e.setDropCompleted(true);
-            } else {
-                e.setDropCompleted(false);
-            }
-		});
-		
-		periods.getChildren().get(3).setOnDragOver(e -> {
-            e.acceptTransferModes(TransferMode.COPY);
-        });
-		periods.getChildren().get(3).setOnDragDropped(e ->{
-			Dragboard db = e.getDragboard();
-			if (db.hasString()) {
-				((Label)periods.getChildren().get(3)).setText(db.getString());
-                e.setDropCompleted(true);
-            } else {
-                e.setDropCompleted(false);
-            }
-		});
-		
-		periods.getChildren().get(4).setOnDragOver(e -> {
-            e.acceptTransferModes(TransferMode.COPY);
-        });
-		periods.getChildren().get(4).setOnDragDropped(e ->{
-			Dragboard db = e.getDragboard();
-			if (db.hasString()) {
-				((Label)periods.getChildren().get(4)).setText(db.getString());
-                e.setDropCompleted(true);
-            } else {
-                e.setDropCompleted(false);
-            }
-		});
-		
-		periods.getChildren().get(5).setOnDragOver(e -> {
-            e.acceptTransferModes(TransferMode.COPY);
-        });
-		periods.getChildren().get(5).setOnDragDropped(e ->{
-			Dragboard db = e.getDragboard();
-			if (db.hasString()) {
-				((Label)periods.getChildren().get(5)).setText(db.getString());
-                e.setDropCompleted(true);
-            } else {
-                e.setDropCompleted(false);
-            }
-		});
-//		}
+
 		maingrid=div.loadDiv();
+		list = (ListView)div.takelist();
+		periods.period();
+		divlab.setText((String) list.getItems().get(0));
+		list.setOnMouseClicked(e ->{
+			divlab.setText((String) list.getSelectionModel().getSelectedItem());
+			periods.getChildren().clear();
+			periods.period();
+		});
 		final Node node = maingrid.getChildren().get(0);
 		Platform.runLater(new Runnable() {
 		     @Override
@@ -143,12 +102,14 @@ public class entryView extends BorderPane{
 		     }
 		});
 		
+		datepane.setRight(date);
         options.getChildren().clear();
         options.getChildren().add(maingrid);
         divgrid.setHgap(5);
-		divgrid.add(emptylab, 0, 0);
-		divgrid.add(divlab, 0, 1);
-		divgrid.add(periods, 1, 1);
+//		divgrid.add(emptylab, 0, 1);
+		divgrid.add(datepane, 1, 0);
+		divgrid.add(divlab, 0, 2);
+		divgrid.add(periods, 1, 2);
 		divgrid.setAlignment(Pos.TOP_CENTER);
 		mainpane.setCenter(centerpane);
 		mainpane.setLeft(options);

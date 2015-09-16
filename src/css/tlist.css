@@ -30,7 +30,7 @@
 #grid{
 	-fx-background-color:#ecf0f1;
 }
-.text-input{
+#search{
     -fx-background-radius: 0, 0;
     -fx-background-color: #ecf0f1;
     -fx-border-color: #3498db;
@@ -54,7 +54,7 @@
 .list-cell { /* <=== changed to even */
     -fx-background-color: #ecf0f1;
     -fx-text-fill: grey;
-    -fx-cell-size: 3.4em; /* 24 */
+    -fx-cell-size: 2.5em; /* 24 */
     -fx-font: 15px "Segoe UI Semibold";
     -fx-alignment: CENTER;
 	-fx-border-width:0;

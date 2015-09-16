@@ -6,15 +6,22 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import database.ClassDatabase;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.*;
 
 public class LoadDiv{
 	String[] str = null;
+	ObservableList<String> divisions = FXCollections.observableArrayList();
+	ListView<String> list = new ListView<String>();
+	ClassDatabase cdatabase = new ClassDatabase();
 	public GridPane loadDiv() {
 		GridPane maingrid = new GridPane();
 		maingrid.setVgap(2);
@@ -26,22 +33,29 @@ public class LoadDiv{
 			ResultSet rs = statement.executeQuery("select * from class where dept = '"+str[1]+"'");
 			int i=0;
 			while(rs.next()) {
-				maingrid.add(new Button(rs.getString("div")), 0, i);
-				i++;
+				divisions.add(rs.getString("div"));
 			}
-			maingrid.add(add, 0, i);
+			list.setItems(divisions);
+			maingrid.add(list, 0, 0);
+			maingrid.add(add, 0, 1);
 			add.setOnAction(new EventHandler<ActionEvent>() {
 				public void handle(ActionEvent arg0) {
 					try {
-						update(statement);
+						try {
+							cdatabase.update(str[1]);
+						} catch (Exception e) {
+							System.out.println(e);
+						}
 						maingrid.getChildren().clear();
 						ResultSet rs = statement.executeQuery("select * from class where dept = '"+str[1]+"'");
 						int i=0;
+						divisions.clear();
 						while(rs.next()) {
-							maingrid.add(new Button(rs.getString("div")), 0, i);
-							i++;
+							divisions.add(rs.getString("div"));
 						}
-						maingrid.add(add, 0, i);
+						list.setItems(divisions);
+						maingrid.add(list, 0, 0);
+						maingrid.add(add, 0, 1);
 					} catch (SQLException e) {
 						System.out.println(e);
 					}
@@ -50,30 +64,17 @@ public class LoadDiv{
 			
 		
 		maingrid.setAlignment(Pos.TOP_CENTER);
-//		maingrid.setVgap(1);
 		}catch(Exception e) {System.out.println(e);}
 		return(maingrid);
 	}
 	
 	public void getNode(Object object) {
 		str = object.toString().split("'");
-//		System.out.println(str[1]);
 	}
-	public void update(Statement statement) throws SQLException {
-		ResultSet rs = statement.executeQuery("select * from class where dept = '"+str[1]+"'");
-		String lastdiv = "A";
-		char[] newdiv;
-		while(rs.next()) {
-			lastdiv = rs.getString("div");
-		}
-		newdiv = lastdiv.toCharArray();
-//		System.out.println(newdiv[0]);
-		for(char alphabet = newdiv[0]; alphabet <= 'Z';alphabet++) {
-			alphabet++;
-			if(alphabet=='[')break;
-//			System.out.println(str[1]);
-			statement.executeUpdate("insert into class (dept, div) values('"+str[1]+"','"+alphabet+"')");
-			break;
-		}
+	
+
+	public ListView takelist() {
+		// TODO Auto-generated method stub
+		return list;
 	}
 }

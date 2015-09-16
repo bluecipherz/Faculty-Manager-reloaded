@@ -33,9 +33,10 @@ public class LoadTeachers extends GridPane{
 		TeacherDatabase t = new TeacherDatabase();
 		TextField search = new TextField();
 		
+		search.setId("search");
 
 		list.setPrefWidth(200);
-		list.setPrefHeight(600);
+		list.setPrefHeight(580);
 		try {
 			t.create("neethi");
 		

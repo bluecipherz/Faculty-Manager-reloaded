@@ -17,6 +17,7 @@ public class TList extends BorderPane{
 		title.setId("title");
 		listpane.setId("list");
 		toppane.setId("toppane");
+		search.setId("search");
 		
 		search.setPromptText("Search");
 		
