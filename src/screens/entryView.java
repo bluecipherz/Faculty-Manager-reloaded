@@ -42,6 +42,8 @@ public class entryView extends BorderPane{
 		TList loadteacher = new TList();
 		DatePicker date = new DatePicker();
 		BorderPane datepane = new BorderPane();
+		BorderPane nextpane = new BorderPane();
+		Button next = new Button("next");
 		
 		
 		
@@ -52,6 +54,7 @@ public class entryView extends BorderPane{
 		periods.setId("period");
 		divlab.setId("divlabel");
 		datepane.setId("datepane");
+		nextpane.setId("nextpane");
 		
 		
 		emptylab.setPrefHeight(100);
@@ -88,6 +91,7 @@ public class entryView extends BorderPane{
 		maingrid=div.loadDiv();
 		list = (ListView)div.takelist();
 		periods.period();
+		list.getSelectionModel().select(0);
 		divlab.setText((String) list.getItems().get(0));
 		list.setOnMouseClicked(e ->{
 			divlab.setText((String) list.getSelectionModel().getSelectedItem());
@@ -101,7 +105,14 @@ public class entryView extends BorderPane{
 		         node.requestFocus();
 		     }
 		});
+		next.setOnAction(e ->{
+//			list.getSelectionModel().getSelectedIndex()+1
+			list.getSelectionModel().select(list.getSelectionModel().getSelectedIndex()+1);
+			divlab.setText((String) list.getSelectionModel().getSelectedItem());
+		});
 		
+		
+		nextpane.setRight(next);
 		datepane.setRight(date);
         options.getChildren().clear();
         options.getChildren().add(maingrid);
@@ -110,6 +121,7 @@ public class entryView extends BorderPane{
 		divgrid.add(datepane, 1, 0);
 		divgrid.add(divlab, 0, 2);
 		divgrid.add(periods, 1, 2);
+		divgrid.add(nextpane, 1, 3);
 		divgrid.setAlignment(Pos.TOP_CENTER);
 		mainpane.setCenter(centerpane);
 		mainpane.setLeft(options);

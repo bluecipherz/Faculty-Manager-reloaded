@@ -83,6 +83,22 @@
 #datepane{
 	-fx-padding :20 0 20 0;
 }
+#nextpane{
+	-fx-padding:60 0 0 0;
+}
+#nextpane .button{
+	-fx-pref-width:80;
+	-fx-pref-height:35;
+	-fx-background-radius: 0, 0;
+	-fx-background-color: #ecf0f1;
+	-fx-text-fill:grey;
+	-fx-font-family: "Segoe UI semibold";
+	-fx-font-size: 14px;
+}
+#nextpane .button:hover{
+	-fx-background-color:#bdc3c7;
+	-fx-text-fill:white;
+}
 #search{
     -fx-background-radius: 0, 0;
     -fx-background-color: #ecf0f1;
